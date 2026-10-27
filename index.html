@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#131613">
+  <meta name="description" content="Ryan Lai studies Electrical Engineering and Computer Sciences at UW–Madison. Explore his programming projects, Jane Street AMP experience, and community work.">
+  <title>Ryan Lai · Engineering & Computer Science</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="#home" aria-label="Ryan Lai, home">rl<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a class="nav-contact" href="#contact">Say hello <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> UW–MADISON / CLASS OF 2030</p>
+        <h1 id="hero-title">Ryan Lai<span class="name-period">.</span></h1>
+        <p class="hero-subtitle">Electrical engineering.<br>Computer science.<br><em>A few things I’ve been building.</em></p>
+        <p class="hero-description">From auction bots to outbreak maps, I’m exploring how programming and mathematical reasoning can turn a problem into something useful.</p>
+        <a class="text-link" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-art" aria-label="Interactive connections to selected projects">
+        <div class="art-topline"><span>CONNECTED IDEAS</span><span>FIG. 01</span></div>
+        <svg class="orbit-lines" viewBox="0 0 460 420" fill="none" aria-hidden="true">
+          <defs><radialGradient id="orbit-glow"><stop stop-color="#aeca99" stop-opacity=".09"/><stop offset="1" stop-color="#aeca99" stop-opacity="0"/></radialGradient></defs>
+          <circle cx="230" cy="210" r="170" fill="url(#orbit-glow)"/>
+          <circle class="orbit-track" cx="230" cy="210" r="136"/>
+          <ellipse class="orbit-track" cx="230" cy="210" rx="185" ry="68" transform="rotate(-35 230 210)"/>
+          <ellipse class="orbit-track" cx="230" cy="210" rx="185" ry="68" transform="rotate(35 230 210)"/>
+          <path class="orbit-connector" d="M230 210 130 99M230 210 360 177M230 210 178 335"/>
+          <circle cx="230" cy="210" r="47" fill="#1d241b" stroke="#4c5c42"/>
+          <circle cx="230" cy="210" r="38" stroke="#34402e"/>
+          <path d="M219 226v-24h5v4c2-3 5-5 9-5v5c-5 0-9 3-9 9v11h-5Zm22-36h5v36h-5v-36Z" fill="#c6d7b3"/>
+          <circle class="travel-dot" cx="230" cy="74" r="3" fill="#bfd49d"/>
+          <circle cx="367" cy="270" r="2" fill="#6e8062"/>
+          <circle cx="85" cy="231" r="2" fill="#6e8062"/>
+        </svg>
+        <a id="orbit-algogem" class="orbit-node node-gem" href="#project-algogem"><span class="node-icon">◇</span><span>ALGOGEM</span><span class="node-arrow" aria-hidden="true">↗</span></a>
+        <a id="orbit-flu" class="orbit-node node-flu" href="#project-flu"><span class="node-icon">⊕</span><span>FLU TRACKER</span><span class="node-arrow" aria-hidden="true">↗</span></a>
+        <a id="orbit-bridge" class="orbit-node node-bridge" href="#project-bridge"><span class="node-icon">⌑</span><span>BRIDGING THE GAP</span><span class="node-arrow" aria-hidden="true">↗</span></a>
+        <p class="art-caption"><span class="tiny-cross">+</span> Different projects. A connected way of thinking.</p>
+      </div>
+      <div class="hero-bottom"><span>MADISON, WISCONSIN</span><a href="https://github.com/ryanboanlai" target="_blank" rel="noopener noreferrer">GITHUB ↗</a><a href="https://www.linkedin.com/in/ryanboanlai/" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a><span class="hero-bottom-note">SCROLL TO EXPLORE ↓</span></div>
+    </section>
+
+    <section id="about" class="about section-grid" aria-labelledby="about-title">
+      <div class="section-label"><span>01 /</span><h2 id="about-title">A bit about me</h2></div>
+      <div class="about-content"><p class="large-copy">I’m a first-year student at the University of Wisconsin–Madison studying <span>Electrical Engineering and Computer Sciences.</span></p>
+        <div class="about-columns"><p>At Jane Street’s Academy of Math and Programming, I worked through problems in probability, programming, and mathematical reasoning. That experience also gave me a place to build and test an auction-game bot.</p><p>My projects span competitive programming, geospatial visualization, and education access. I’ve also helped a three-person team bring student-created books and STEM kits to students in India.</p></div>
+        <div class="skills" aria-label="Skills and interests"><span>Python</span><span>Java</span><span>JavaScript</span><span>Probability</span><span>Git & GitHub</span></div>
+      </div>
+    </section>
+
+    <section id="work" class="work" aria-labelledby="work-title">
+      <div class="section-heading"><div class="section-label"><span>02 /</span><h2 id="work-title">Selected work</h2></div><span class="section-aside">CODE, STRATEGY & COMMUNITY</span></div>
+      <article id="project-algogem" class="project project-gem">
+        <div class="project-visual gem-visual" aria-hidden="true">
+          <div class="visual-topline"><span>SEALED-BID AUCTION</span><span>01</span></div>
+          <svg viewBox="0 0 440 270" fill="none"><path d="M70 218H370M70 218V55" stroke="#3b4734" stroke-dasharray="3 5"/><path d="m90 194 49-25 49 10 50-62 49 16 56-69" stroke="#8fae72" stroke-width="1.5"/><g transform="translate(150 48)"><path d="m0 50 35-48h70l35 48-70 87L0 50Z" fill="#222f20" stroke="#b5cd93"/><path d="m0 50 70 87 70-87H0Zm35-48 35 135L105 2M35 2 22 50 70 137 118 50 105 2M0 50h140" stroke="#8da373"/><path d="M35 2h70L70 50 35 2Z" fill="#70875d" fill-opacity=".3"/></g><circle cx="90" cy="194" r="4" fill="#bdd39e"/><circle cx="343" cy="64" r="4" fill="#bdd39e"/></svg>
+          <div class="visual-bottomline"><span>OBSERVE → BID → REVEAL</span><span>PYTHON</span></div>
+        </div>
+        <div class="project-copy"><div class="project-kicker"><span>PROGRAMMING / GAME THEORY</span><span>2026</span></div><h3>ALGOGEM</h3><p class="project-subtitle">Making decisions with incomplete information.</p><p>A Python bot for Jane Street’s gem-auction competition. It tracks opponents’ collections, uses bidding thresholds, and chooses which gem to reveal based on its value to me relative to other players.</p><div class="project-footer"><span class="project-tag">Python · Strategy · Opponent modeling</span><button id="open-algogem" class="round-link" data-dialog="detail-algogem" aria-label="Read about ALGOGEM"><span aria-hidden="true">↗</span></button></div></div>
+      </article>
+      <article id="project-flu" class="project project-flu">
+        <div class="project-visual map-visual" aria-hidden="true"><div class="visual-topline"><span>GEOSPATIAL VISUALIZATION</span><span>02</span></div><svg viewBox="0 0 440 270" fill="none"><g stroke="#38433f" stroke-width="1"><path d="m50 82 25-23 43 5 15-15 36 14 20 24-4 30-23 3-8 31-23-5-23-31-27-8-31-25Zm80 77 28 0 20 32-12 29-18 26-11-30 4-26-11-31Zm104-89 25-16 24 9 10 18 34-7 42 15 28 27-20 14-28-4-17 20-20-8-15-25-25-8-15 17-17-8-6-25Zm16 60 38 4 18 24-14 37-19 12-13-31-10-46Zm93 63 22-9 28 14-3 17-25 6-22-11v-17Z" fill="#202c27"/><path d="M40 110h360M40 160h360M110 40v200M220 40v200M330 40v200" stroke-dasharray="2 6"/></g><circle class="map-pulse" cx="119" cy="102" r="22" stroke="#96bfb3" stroke-opacity=".35"/><g fill="#a4c9b9"><circle cx="119" cy="102" r="4"/><circle cx="252" cy="86" r="4"/><circle cx="292" cy="141" r="4"/><circle cx="338" cy="106" r="4"/><circle cx="162" cy="196" r="4"/></g><path d="M124 102c49-45 84-45 124-17" stroke="#9ac1af" stroke-dasharray="4 5"/><rect x="275" y="193" width="104" height="28" rx="4" fill="#19241f" stroke="#3d5147"/><text x="289" y="211" fill="#a5bbaf" font-family="monospace" font-size="9">ILLUSTRATIVE MAP</text></svg><div class="visual-bottomline"><span>LOCATION → DISTANCE → RISK</span><span>JAVASCRIPT</span></div></div>
+        <div class="project-copy"><div class="project-kicker"><span>HACKATHON / DATA VISUALIZATION</span><span>2025</span></div><h3>Global Flu Tracker</h3><p class="project-subtitle">Putting outbreak information on the map.</p><p>A team-built web project with an interactive outbreak map and location-based proximity scoring. Our team earned second place at HackAppleton.</p><div class="project-footer"><span class="project-tag">JavaScript · Leaflet · HTML/CSS</span><button id="open-flu" class="round-link" data-dialog="detail-flu" aria-label="Read about Global Flu Tracker"><span aria-hidden="true">↗</span></button></div></div>
+      </article>
+      <article id="project-bridge" class="project project-bridge">
+        <div class="project-visual book-visual" aria-hidden="true"><div class="visual-topline"><span>BOOKS TO INDIA</span><span>03</span></div><svg viewBox="0 0 440 270" fill="none"><g transform="translate(98 63) rotate(-8 100 80)"><path d="M0 20c35-10 75-5 100 10 25-15 65-20 100-10v115c-35-10-75-5-100 10-25-15-65-20-100-10V20Z" fill="#382d23" stroke="#b7a185"/><path d="M100 30v115M12 10c35-10 63-2 88 10 25-12 53-20 88-10v115c-35-7-63-1-88 10-25-11-53-17-88-10V10Z" fill="#27231d" stroke="#b7a185"/><path d="M100 20v115M28 35l54 8M28 50l54 8M28 65l54 8M28 80l35 5M118 43l54-8M118 58l54-8M118 73l54-8M118 88l35-5" stroke="#796a55"/></g><circle cx="329" cy="83" r="28" fill="#29271e" stroke="#6f6b4c"/><path d="M317 83h24M329 71v24" stroke="#b8bc86"/><path d="m79 210 9 9 9-9M341 178l8 8m0-8-8 8" stroke="#b8a286"/></svg><div class="visual-bottomline"><span>575 BOOKS / 48 STEM KITS</span><span>170 STUDENTS</span></div></div>
+        <div class="project-copy"><div class="project-kicker"><span>COMMUNITY / EDUCATION ACCESS</span><span>TEAM PROJECT</span></div><h3>Bridging the Gap</h3><p class="project-subtitle">Connecting students through books and STEM.</p><p>Part of a three-person team that raised over $2,500 and delivered 575 books and 48 STEM kits to 170 students in India. I helped proofread student-created books and prepare them for printing.</p><div class="project-footer"><span class="project-tag">Literacy · STEM access · Collaboration</span><button id="open-bridge" class="round-link" data-dialog="detail-bridge" aria-label="Read about Bridging the Gap"><span aria-hidden="true">↗</span></button></div></div>
+      </article>
+    </section>
+
+    <section id="experience" class="experience section-grid" aria-labelledby="experience-title"><div class="section-label"><span>03 /</span><h2 id="experience-title">Along the way</h2></div><div class="timeline"><article class="timeline-item"><div class="timeline-top"><p class="timeline-date">JUN – AUG 2026</p><span class="timeline-location">NEW YORK, NY</span></div><h3>Jane Street</h3><p class="timeline-role">Academy of Math and Programming</p><p>A residential program centered on mathematical reasoning and programming. Worked through probability and combinatorics problems, studied strategic decision-making, and developed a bot for the ALGOGEM competition.</p></article><article class="timeline-item"><div class="timeline-top"><p class="timeline-date">2026 – 2030 (EXPECTED)</p><span class="timeline-location">MADISON, WI</span></div><h3>University of Wisconsin–Madison</h3><p class="timeline-role">Electrical Engineering & Computer Sciences</p><p>First-year student studying the relationship between computing and engineering, with an interest in quantitative problem-solving and building useful software.</p></article></div></section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-title"><div class="section-label"><span>04 /</span><h2 id="contact-title">Keep in touch</h2></div><div class="contact-body"><p class="contact-heading">Let’s compare <em>notes.</em></p><p>Have a project in mind, a question about my work, or something interesting to share? Send me a message.</p><a id="email-link" class="email-link" href="mailto:rlai23@wisc.edu">rlai23@wisc.edu <span aria-hidden="true">↗</span></a><div class="contact-socials"><a href="https://github.com/ryanboanlai" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/ryanboanlai/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><button id="copy-email" type="button">Copy email <span aria-hidden="true">⧉</span></button><span id="copy-status" role="status"></span></div></div></section>
+  </main>
+  <footer class="site-footer"><a class="wordmark" href="#home" aria-label="Back to top">rl<span>.</span></a><span>© 2026 RYAN LAI</span><span>ALWAYS LEARNING.</span><a href="#home">BACK TO TOP ↑</a></footer>
+
+  <dialog id="detail-algogem" aria-labelledby="title-algogem"><div class="dialog-top"><span>PROJECT NOTES / 01</span><button id="close-algogem" class="close-dialog" data-close="detail-algogem" aria-label="Close ALGOGEM project">×</button></div><h2 id="title-algogem">ALGOGEM</h2><p class="dialog-deck">Strategy in a sealed-bid gem auction.</p><p>I built a Python bot using the competition’s provided client. Each turn involves two decisions: how much to bid and which card to reveal. The shared display changes the value of the gems players hold.</p><h3>How the bot works</h3><ul><li>Records the gems each player wins after every auction.</li><li>Scores reveal options by comparing my collection with the strongest rival’s holdings of the same color.</li><li>Accounts for saturation when a color already has five cards in the value display.</li><li>Uses bidding thresholds tied to auction type and available coins.</li></ul><p class="dialog-note">Built during Jane Street’s Academy of Math and Programming, 2026.</p><div class="dialog-tags"><span>Python</span><span>Opponent modeling</span><span>Game strategy</span></div></dialog>
+  <dialog id="detail-flu" aria-labelledby="title-flu"><div class="dialog-top"><span>PROJECT NOTES / 02</span><button id="close-flu" class="close-dialog" data-close="detail-flu" aria-label="Close Global Flu Tracker project">×</button></div><h2 id="title-flu">Global Flu Tracker</h2><p class="dialog-deck">Second place at HackAppleton, 2025.</p><p>A team-built JavaScript web application for exploring flu outbreak locations on an interactive map.</p><h3>What we built</h3><ul><li>A Leaflet map using OpenStreetMap tiles.</li><li>Toggleable layers for human and animal outbreak locations.</li><li>Location lookup with Nominatim geocoding.</li><li>Proximity-based risk scoring using Haversine distance.</li></ul><p class="dialog-note">This is a hackathon prototype. Its recorded outbreak data and simulated prediction features are not a live public-health feed or medical guidance.</p><a class="dialog-source" href="https://github.com/Enderworld576/swinebirdflutracker" target="_blank" rel="noopener noreferrer">Explore the source on GitHub ↗</a><div class="dialog-tags"><span>JavaScript</span><span>Leaflet</span><span>HTML/CSS</span></div></dialog>
+  <dialog id="detail-bridge" aria-labelledby="title-bridge"><div class="dialog-top"><span>PROJECT NOTES / 03</span><button id="close-bridge" class="close-dialog" data-close="detail-bridge" aria-label="Close Bridging the Gap project">×</button></div><h2 id="title-bridge">Bridging the Gap</h2><p class="dialog-deck">Books to India.</p><p>Our three-person team connected student-created books and STEM activities with students in India. The work included fundraising, coordinating materials, proofreading, and getting digital books ready to print.</p><div class="impact-grid"><div><strong>575</strong><span>books delivered</span></div><div><strong>48</strong><span>STEM kits</span></div><div><strong>170</strong><span>students reached</span></div></div><h3>My contribution</h3><p>I helped proofread the books, organize digital files, and prepare page layouts for printing. Our team raised over $2,500 to support the project.</p><div class="dialog-tags"><span>Education access</span><span>Community</span><span>Teamwork</span></div></dialog>
+</body>
+</html>
