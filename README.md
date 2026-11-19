@@ -6,7 +6,7 @@ Personal portfolio for my engineering, programming, and community projects.
 
 ## Featured work
 
-- **[ECHO RESCUE](https://ryan-lai-portfolio.kimisui227.chatgpt.site/#project-echo):** MadHacks 2026 team project connecting iPhone LiDAR scans to persistent room maps and browser-based room analysis. The feature includes a real scan image, team credit, and my contributions.
+- **[ECHO RESCUE](https://ryan-lai-portfolio.kimisui227.chatgpt.site/#project-echo):** MadHacks 2026 team project connecting iPhone LiDAR scans to persistent room maps and browser-based room analysis. The case study includes an enlarged recorded scan, the team pipeline, design choices, and my contributions.
 - **[ALGOGEM](https://ryan-lai-portfolio.kimisui227.chatgpt.site/#project-algogem):** Python auction bot developed during Jane Street AMP.
 - **[Global Flu Tracker](https://ryan-lai-portfolio.kimisui227.chatgpt.site/#project-flu):** Team-built geospatial prototype, with my map and proximity-scoring contributions.
 - **[Bridging the Gap](https://ryan-lai-portfolio.kimisui227.chatgpt.site/#project-bridge):** Books and STEM access project, with my proofreading and print-preparation work.
@@ -27,7 +27,7 @@ Open [localhost:8000](http://127.0.0.1:8000). Stop the server with Ctrl+C.
 
 - `index.html`: page content, project illustrations, and native project dialogs.
 - `styles.css`: responsive layouts, focus styles, and reduced-motion rules.
-- `app.js`: dialog controls and email copying.
+- `app.js`: native dialog controls, email copying, and the current-section navigation state.
 - `echosense-scan.webp`: optimized image from the team's final MadHacks scans.
 - `social-preview.png`: sharing preview.
 - `favicon.svg`: site icon.

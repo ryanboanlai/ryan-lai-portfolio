@@ -60,3 +60,28 @@ if (!(copyButton instanceof HTMLButtonElement)) {
   throw new TypeError('Copy email button is missing.');
 }
 copyButton.addEventListener('click', copyEmail);
+
+/** @param {IntersectionObserverEntry[]} entries @returns {void} */
+function updateCurrentSection(entries) {
+  const visibleSection = entries.findLast((entry) => entry.isIntersecting);
+  if (!visibleSection) return;
+
+  document.querySelectorAll('.site-header nav a').forEach((link) => {
+    if (!(link instanceof HTMLAnchorElement)) {
+      throw new TypeError('Main navigation must contain anchor links.');
+    }
+    if (link.hash === `#${visibleSection.target.id}`) {
+      link.setAttribute('aria-current', 'location');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
+}
+
+const sectionObserver = new IntersectionObserver(updateCurrentSection, {
+  rootMargin: '-20% 0px -60% 0px',
+  threshold: 0,
+});
+document.querySelectorAll('main > section[id]').forEach((section) => {
+  sectionObserver.observe(section);
+});
