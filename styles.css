@@ -11,6 +11,13 @@
   --serif: 'Instrument Serif', Georgia, serif;
   --mono: 'IBM Plex Mono', monospace;
 }
+.cursor-trail { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.cursor-trail[hidden], .cursor-hint[hidden] { display: none; }
+main, .site-footer { position: relative; z-index: 1; }
+.cursor-hint { color: var(--dim); font-size: .875rem; margin: 18px 0 0; max-width: 42ch; }
+@media (prefers-reduced-motion: reduce) {
+  .cursor-trail, .cursor-hint { display: none; }
+}
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 1rem/1.75 var(--sans); -webkit-font-smoothing: antialiased; }
