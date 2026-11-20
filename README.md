@@ -28,8 +28,9 @@ Open [localhost:8000](http://127.0.0.1:8000). Stop the server with Ctrl+C.
 - `index.html`: page content, project illustrations, and native project dialogs.
 - `styles.css`: responsive layouts, focus styles, and reduced-motion rules.
 - `app.js`: native dialog controls, email copying, and the current-section navigation state.
-- `cursor.js`: mouse trails and a brighter particle ribbon while dragging. The canvas ignores clicks, pauses when idle, and disables motion for reduced-motion settings and touch-only devices.
-- `cursor-physics.mjs`: bounded particle movement, stroke sampling, and trail cleanup.
+- `cursor.js`: mouse interaction and animation lifecycle. Dragging widens the ribbon; releasing a drag creates expanding rings and a particle burst. The canvas ignores clicks, pauses when idle, and disables motion for reduced-motion settings and touch-only devices.
+- `cursor-physics.mjs`: bounded curved particle movement, ribbon offsets, stroke sampling, and cleanup.
+- `cursor-painter.mjs`: layered green, teal, and gold ribbons, spark streaks, and release rings.
 - `echosense-scan.webp`: optimized image from the team's final MadHacks scans.
 - `social-preview.png`: sharing preview.
 - `favicon.svg`: site icon.

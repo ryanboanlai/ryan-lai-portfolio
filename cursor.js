@@ -1,10 +1,13 @@
 // @ts-check
-import { appendSparks, advanceSparks, advanceStroke, createDragSparks, createHoverSpark, sampleStroke, TRAIL_LIFE } from './cursor-physics.mjs';
+import { appendSparks, advanceSparks, advanceStroke, createDragSparks, createHoverSpark, sampleStroke, appendPulse, advancePulses, createReleaseSparks } from './cursor-physics.mjs';
+import { paintCursor } from './cursor-painter.mjs';
 
 /** @typedef {import('./cursor-physics.mjs').Point} Point */
 /** @typedef {import('./cursor-physics.mjs').Spark} Spark */
 /** @typedef {import('./cursor-physics.mjs').TrailPoint} TrailPoint */
+/** @typedef {import('./cursor-physics.mjs').Pulse} Pulse */
 
+/** @returns {void} */
 function mountCursorTrail() {
   const canvas = document.getElementById('cursor-trail');
   const hint = document.getElementById('cursor-hint');
@@ -18,11 +21,15 @@ function mountCursorTrail() {
   const finePointer = window.matchMedia('(any-pointer: fine)');
   const color = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
   if (!color) throw new Error('The cursor trail requires the --accent theme color.');
+  /** @type {import('./cursor-painter.mjs').Palette} */
+  const palette = [color, '#80d8cf', '#e5c484'];
 
   /** @type {ReadonlyArray<Spark>} */
   let sparks = [];
   /** @type {ReadonlyArray<TrailPoint>} */
   let stroke = [];
+  /** @type {ReadonlyArray<Pulse>} */
+  let pulses = [];
   /** @type {Point | null} */
   let previous = null;
   let dragging = false;
@@ -33,6 +40,8 @@ function mountCursorTrail() {
   let phase = 0;
   let width = 0;
   let height = 0;
+  let energy = 0;
+  let dragDistance = 0;
 
   /** @returns {void} */
   function clearTrail() {
@@ -41,8 +50,12 @@ function mountCursorTrail() {
     lastFrame = 0;
     sparks = [];
     stroke = [];
+    pulses = [];
     previous = null;
     dragging = false;
+    energy = 0;
+    dragDistance = 0;
+    lastInput = 0;
     context.clearRect(0, 0, width, height);
   }
 
@@ -69,84 +82,35 @@ function mountCursorTrail() {
   }
 
   /** @param {number} now @returns {void} */
-  function drawStroke(now) {
-    if (stroke.length < 2) return;
-    context.lineCap = 'round';
-    context.lineJoin = 'round';
-    context.strokeStyle = color;
-    context.beginPath();
-    context.moveTo(stroke[0].x, stroke[0].y);
-    for (const point of stroke.slice(1)) context.lineTo(point.x, point.y);
-    context.globalAlpha = .07 * (1 - (now - stroke[stroke.length - 1].time) / TRAIL_LIFE);
-    context.lineWidth = 10;
-    context.stroke();
-    context.lineWidth = 1.4;
-    for (let index = 1; index < stroke.length; index += 1) {
-      const point = stroke[index];
-      const before = stroke[index - 1];
-      context.globalAlpha = .5 * Math.pow(1 - (now - point.time) / TRAIL_LIFE, 2);
-      context.beginPath();
-      context.moveTo(before.x, before.y);
-      context.lineTo(point.x, point.y);
-      context.stroke();
-    }
-  }
-
-  /** @param {number} now @returns {void} */
-  function drawSparks(now) {
-    context.fillStyle = color;
-    context.strokeStyle = color;
-    for (const spark of sparks) {
-      const remaining = 1 - (now - spark.born) / spark.life;
-      context.globalAlpha = .65 * remaining * remaining;
-      context.beginPath();
-      context.arc(spark.x, spark.y, spark.radius * (.5 + remaining * .5), 0, Math.PI * 2);
-      context.fill();
-    }
-    const recent = sparks.slice(-12);
-    context.lineWidth = .7;
-    for (let index = 0; index < recent.length; index += 1) {
-      for (const other of recent.slice(index + 1)) {
-        const point = recent[index];
-        const distance = Math.hypot(point.x - other.x, point.y - other.y);
-        if (distance > 48) continue;
-        context.globalAlpha = .13 * (1 - distance / 48) * (1 - (now - point.born) / point.life);
-        context.beginPath();
-        context.moveTo(point.x, point.y);
-        context.lineTo(other.x, other.y);
-        context.stroke();
-      }
-    }
-  }
-
-  /** @param {number} now @returns {void} */
   function render(now) {
     frame = 0;
     if (!enabled) return;
-    sparks = advanceSparks(sparks, now, lastFrame ? now - lastFrame : 16);
+    const elapsed = lastFrame ? now - lastFrame : 16;
+    sparks = advanceSparks(sparks, now, elapsed);
     stroke = advanceStroke(stroke, [], now);
+    pulses = advancePulses(pulses, now);
+    energy += ((dragging ? 1 : 0) - energy) * (1 - Math.exp(-Math.min(elapsed, 32) / 90));
     lastFrame = now;
     context.clearRect(0, 0, width, height);
-    drawStroke(now);
-    drawSparks(now);
-    context.globalAlpha = 1;
-    if (sparks.length || stroke.length) frame = requestAnimationFrame(render);
+    paintCursor(context, { stroke, sparks, pulses, now, energy }, palette);
+    if (sparks.length || stroke.length || pulses.length) frame = requestAnimationFrame(render);
     else lastFrame = 0;
   }
 
   /** @param {PointerEvent} event @returns {void} */
   function movePointer(event) {
     if (!enabled || event.pointerType !== 'mouse') return;
-    if (document.querySelector('dialog[open]')) return;
+    if (document.querySelector('dialog[open]')) { clearTrail(); return; }
     const now = performance.now();
     if (now - lastInput < 16) return;
     const point = { x: event.clientX, y: event.clientY };
-    const before = previous ?? point;
+    const before = now - lastInput > 100 ? point : previous ?? point;
     const elapsed = Math.max(16, now - lastInput) / 1000;
+    const samples = sampleStroke(before, point, now);
+    stroke = advanceStroke(stroke, samples, now);
     if (dragging) {
-      const samples = sampleStroke(before, point, now);
+      dragDistance += Math.hypot(point.x - before.x, point.y - before.y);
       const velocity = { x: (point.x - before.x) / elapsed, y: (point.y - before.y) / elapsed };
-      stroke = advanceStroke(stroke, samples, now);
       for (const sample of samples) {
         sparks = appendSparks(sparks, createDragSparks(sample, velocity, now, phase));
         phase += 1;
@@ -166,14 +130,24 @@ function mountCursorTrail() {
     if (target instanceof Element && target.closest('a, button, input, select, textarea, [contenteditable]')) return;
     if (document.querySelector('dialog[open]')) return;
     dragging = true;
+    dragDistance = 0;
     stroke = [];
     previous = { x: event.clientX, y: event.clientY };
     lastInput = performance.now();
   }
 
-  /** @returns {void} */
-  function endDrag() {
+  /** @param {PointerEvent} event @returns {void} */
+  function endDrag(event) {
+    if (event.pointerType !== 'mouse') return;
+    if (enabled && dragging && dragDistance > 16) {
+      const point = { x: event.clientX, y: event.clientY };
+      const now = performance.now();
+      sparks = appendSparks(sparks, createReleaseSparks(point, now));
+      pulses = appendPulse(pulses, point, now);
+      if (!frame) frame = requestAnimationFrame(render);
+    }
     dragging = false;
+    dragDistance = 0;
     previous = null;
   }
 
